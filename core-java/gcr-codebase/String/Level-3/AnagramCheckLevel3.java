@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class AnagramCheckLevel3 {
+    public static boolean areAnagrams(String a, String b) {
+        if (a.length() != b.length()) return false;
+        int[] freq = new int[256];
+        for (int i = 0; i < a.length(); i++) freq[a.charAt(i)]++;
+        for (int i = 0; i < b.length(); i++) {
+            freq[b.charAt(i)]--;
+            if (freq[b.charAt(i)] < 0) return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter first text: ");
+        String a = sc.nextLine().replaceAll("\\s+", "");
+        System.out.print("Enter second text: ");
+        String b = sc.nextLine().replaceAll("\\s+", "");
+        System.out.println("Anagrams: " + areAnagrams(a, b));
+        sc.close();
+    }
+}
